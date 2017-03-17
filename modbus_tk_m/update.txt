@@ -1,0 +1,45 @@
+更新记录
+========
+
+2011-11-14
+----------
+01. 下载最新发布的 modbus-tk 0.4.2
+02. 以 modbus_tcp.py 作为原型，并借鉴了 modbus_rtu.py 的一些函数，编写了 modbus_rtu_over_tcp.py
+
+2012-04-12
+----------
+01. 下载最新发布的 modbus-tk 0.4.2 (猜测是 fix issue 23, uploaded on 2011-10-12) 并与原有版本对比, 同步修改了 modbus_rtu.py 中的一处 (self._serial.timeout = 10 * self._t0)
+
+2012-08-08
+----------
+01. 修改了 modbus.py 中 Slave 类下的 add_block 函数的最后几行, 使其返回新添加的 ModbusBlock 对象
+02. 修改了 modbus.py 中 Master 类下的 execute 函数, 增加了可选参数 wait_for_response, 并修改了等待和处理 response 的语句之前的逻辑判断
+
+2012-08-14
+----------
+01. 修改了 modbus.py 中 ModbusBlock 类下的 __init__ 函数, 增加了可选参数 block_name
+02. 修改了 modbus.py 中 Slave 类下的 add_block 函数的最后几行, 修改了对 ModbusBlock 的实例化调用
+03. 修改了 modbus.py 中 ModbusBlock 类下的 __setitem__ 函数, 修改了对 call_hooks 的调用
+04. 修改了 hooks.py 中 install_hook 函数的注释部分中关于 modbus.ModbusBlock.setitem 的说明
+05. 修改了 modbus.py 中 Master 类下的 execute 函数, 增加了可选参数 print_message, 并增加了打印请求和回复报文的功能
+
+2012-08-15
+----------
+01. 修改了 modbus.py 中 ModbusBlock 类下的 __getitem__ 函数, 增加了对 call_hooks 的调用
+02. 修改了 hooks.py 中 install_hook 函数的注释部分, 增加了关于 modbus.ModbusBlock.getitem 的说明
+
+2013-07-09
+----------
+01. 修改了 modbus_rtu_over_tcp.py 文件, 改正了 Modbus RTU over TCP 一直以来遗留的错误 (主要是没有考虑不同功能码下接收长度定义和数据格式的不同)
+
+2015-08-17
+----------
+01. 修改了 modbus_rtu_over_tcp.py 文件, 使其支持功能码 05 和 06
+02. 修改了 modbus_rtu_over_tcp.py 文件, 解决了 RtuOverTcpServer 启动时报错 "socket.error: [Errno 98] Address already in use" 的问题
+03. 修改了 modbus_rtu_over_tcp.py 文件, 为 RtuOverTcpServer 类的构造函数增加了可选参数 print_message, 并增加了打印请求和回复报文的功能
+04. 多个文件的代码整理
+
+2015-09-23
+----------
+01. 修改了 modbus_tcp.py 文件, 解决了 TcpServer 启动时报错 "socket.error: [Errno 98] Address already in use" 的问题
+
